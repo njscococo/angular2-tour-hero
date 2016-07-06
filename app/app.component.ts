@@ -65,11 +65,21 @@ import { HeroService } from './hero.service';
     border-radius: 4px 0 0 4px;
   }
 `],
-directives: [HeroDetailComponent] 
+directives: [HeroDetailComponent],
+providers: [HeroService] 
 })
 
 export class AppComponent {
-    public heroes = HEROES;
+    public heroes;
+    constructor(private heroService: HeroService){
+      
+    }
+
+    getHeroes(){
+      this.heroes = this.heroService.getHeroes();
+    }
+
+    
     title = 'Tour of Heros';
     selectedHero: Hero;
 
